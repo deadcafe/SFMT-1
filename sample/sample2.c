@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define _XOPEN_SOURCE 600
 #include <stdlib.h>
-#include "SFMT.h"
+#include <SFMT.h>
 
 int main(int argc, char* argv[]) {
     int i, j, cnt, seed;

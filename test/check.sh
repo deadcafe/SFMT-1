@@ -3,10 +3,11 @@ bit_len=$1
 prefix=$2
 tmp=tmp.$$
 tmp64=tmp64.$$
-exps="607 1279 2281 4253 11213 19937 44497 86243 132049 216091"
+#exps="607 1279 2281 4253 11213 19937 44497 86243 132049 216091"
+exps="19937"
 for mexp in $exps; do
     if [ $bit_len = "64" ]; then
-	./test-std-M${mexp} -b64 > $tmp64
+	./test-xxx-M${mexp} -b64 > $tmp64
 	compare=$tmp64
     else
 	compare=SFMT.${mexp}.out.txt

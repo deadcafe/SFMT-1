@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "SFMT.h"
+#include <SFMT.h>
 
 int main(int argc, char* argv[]) {
     int i, cnt, seed;

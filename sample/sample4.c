@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <string.h>
-#include "SFMT.h"
+#include <SFMT.h>
 
 int main(int argc, char* argv[]) {
-    int i, cnt, seed_cnt;
+    unsigned i, cnt, seed_cnt;
     double x, y, pi;
-    const int NUM = 10000;
+    const unsigned NUM = 10000;
     uint32_t seeds[100];
     sfmt_t sfmt;
 
