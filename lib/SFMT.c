@@ -54,7 +54,20 @@ inline static void swap(w128_t *array, int size);
 
 #if defined(HAVE_ALTIVEC)
   #include "SFMT-alti.h"
-#elif defined(HAVE_SSE2)
+#elif defined(HAVE_AVX2)
+/**
+ * parameters used by 256-bit AVX2.
+ */
+static const w256_t avx2_param_mask = {
+    {
+        SFMT_MSK1, SFMT_MSK2,
+        SFMT_MSK3, SFMT_MSK4,
+        SFMT_MSK1, SFMT_MSK2,
+        SFMT_MSK3, SFMT_MSK4,
+    }
+};
+  #include "SFMT-avx2.h"
+#elif defined(HAVE_SSE2) || defined(HAVE_AVX)
 /**
  * parameters used by sse2.
  */

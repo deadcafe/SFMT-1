@@ -88,8 +88,8 @@ union W128_T {
     uint64_t u64[2];
     uint32x4_t si;
 };
-#elif defined(HAVE_SSE2)
-  #include <emmintrin.h>
+#elif defined(HAVE_SSE2) || defined(HAVE_AVX)
+  #include <x86intrin.h>
 
 /** 128-bit data structure */
 union W128_T {
@@ -108,12 +108,32 @@ union W128_T {
 /** 128-bit data type */
 typedef union W128_T w128_t;
 
+/** 256-bit data structure */
+union W256_T {
+    uint32_t u32[8];
+    uint64_t u64[4];
+
+    w128_t w128[2];
+
+#if defined(HAVE_AVX2)
+    __m128i xmm[2];
+    __m256i ymm;
+#endif
+};
+typedef union W256_T w256_t;
+
+
 /**
  * SFMT internal state
  */
 struct SFMT_T {
-    /** the 128-bit internal state array */
-    w128_t state[SFMT_N];
+    union {
+        /** the 256-bit internal state array */
+        w256_t state_y[SFMT_N / 2];
+
+        /** the 128-bit internal state array */
+        w128_t state[SFMT_N];
+    };
     /** index counter to the 32-bit internal state array */
     int idx;
 };
